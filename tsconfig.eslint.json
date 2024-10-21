@@ -6,10 +6,10 @@
     "noEmit": true
   },
   "include": [
-    ".eslintrc.cjs",
-    "jest.config.ts",
+    "eslint.config.mjs",
+    "vite.config.ts",
     "postcss.config.js",
     "tailwind.config.js",
-    "config/**/*.js"
+    "config/**/*.ts"
   ]
 }

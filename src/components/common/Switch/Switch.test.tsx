@@ -1,3 +1,4 @@
+import { describe, vi, expect, it } from 'vitest';
 import { render, fireEvent } from '@testing-library/react';
 
 import Switch from './Switch';
@@ -6,7 +7,7 @@ describe('Switch', () => {
   it('should call "clickOutsideSpy" when element is clicked ouside', () => {
     let isOn = false;
 
-    const toggleSpy = jest.fn(() => {
+    const toggleSpy = vi.fn(() => {
       isOn = !isOn;
     });
 

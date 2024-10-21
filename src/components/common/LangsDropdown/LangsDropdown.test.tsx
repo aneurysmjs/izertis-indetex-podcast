@@ -1,3 +1,4 @@
+import { describe, test, it, expect } from 'vitest';
 import { screen } from '@testing-library/react';
 
 import withUserSetup from '@/utils/testUtils/withUserSetup';
@@ -7,9 +8,9 @@ describe('LangsDropdown', () => {
   test(`dropdown's toggle should default to "en" as textContent`, () => {
     withUserSetup(<LangsDropdown />);
 
-    const dropdowToggle = screen.getByTestId('dropdown-toggle');
+    const dropdownToggle = screen.getByTestId('dropdown-toggle');
 
-    expect(dropdowToggle.textContent).toContain('en');
+    expect(dropdownToggle.textContent).toContain('en');
   });
 
   it('should display dropdown when toggle', async () => {

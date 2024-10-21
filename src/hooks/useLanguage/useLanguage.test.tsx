@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/require-await */
+import { describe, test, vi, expect, beforeEach } from 'vitest';
+
 import { renderHook } from '@testing-library/react';
 import { act } from 'react';
 
@@ -49,7 +51,7 @@ describe('useLanguage', () => {
   });
 
   test('it should call `callback` after language change', async () => {
-    const onLangChangedSpy = jest.fn();
+    const onLangChangedSpy = vi.fn();
 
     expect(localStorage.getItem('i18nextLng')).toBeNull();
 
