@@ -1,12 +1,15 @@
 import { FC, StrictMode } from 'react';
 
-import './assets/css/styles.css';
-
 import Routing from '@/routing';
+import QueryProvider from '@/providers/QueryProvider';
+
+import './assets/css/styles.css';
 
 const App: FC = () => (
   <StrictMode>
-    <Routing />
+    <QueryProvider>
+      <Routing />
+    </QueryProvider>
   </StrictMode>
 );
 
