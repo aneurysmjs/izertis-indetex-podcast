@@ -8,8 +8,8 @@ const PODCAST_BY_ID_URL = 'https://itunes.apple.com/lookup';
 
 export const getPodcast = () => axios.get<PodcastResponse>(PODCAST_URL);
 
-export const getPodcastDescription = (id: string): Promise<PodcastDescriptionResponse> =>
-  axios.get(PODCAST_BY_ID_URL, {
+export const getPodcastDescription = (id: string) =>
+  axios.get<PodcastDescriptionResponse>(PODCAST_BY_ID_URL, {
     params: {
       id,
       media: 'podcast',

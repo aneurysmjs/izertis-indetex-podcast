@@ -1,5 +1,5 @@
 import { describe, it, vi, expect } from 'vitest';
-import { FunctionComponent, useRef } from 'react';
+import { FC, useRef } from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 
 import useClickOutside from './useClickOutside';
@@ -8,7 +8,7 @@ interface Props {
   onClick: () => void;
 }
 
-const ClickOutside: FunctionComponent<Props> = ({ onClick }) => {
+const ClickOutside: FC<Props> = ({ onClick }) => {
   const ref = useRef<HTMLButtonElement | null>(null);
 
   useClickOutside(ref, onClick);
