@@ -9,6 +9,8 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       gcTime: DAY,
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
     },
   },
 });
