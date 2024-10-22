@@ -21,7 +21,16 @@ const PodcastEpisode = () => {
           </header>
           <p>{episode.description}</p>
           <footer>
-            <audio data-testid="player" className="mt-8 w-full" controls src={episode.episodeUrl}>
+            <audio
+              controls
+              preload="auto"
+              data-testid="player"
+              // eslint-disable-next-line readable-tailwind/multiline
+              className={`
+                mt-8 w-full
+              `}
+            >
+              <source src={episode.episodeUrl} type="audio/mpeg" />
               <track kind="captions" />
             </audio>
           </footer>
