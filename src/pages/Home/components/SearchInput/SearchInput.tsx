@@ -9,6 +9,7 @@ interface PodcastItemProps {
 
 const SearchInput: FC<PodcastItemProps> = ({ onChange, onClear = () => undefined }) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
+
   const handleClear = () => {
     if (inputRef.current) {
       inputRef.current.value = '';
@@ -26,16 +27,18 @@ const SearchInput: FC<PodcastItemProps> = ({ onChange, onClear = () => undefined
         className="input mr-0 pr-6"
         onChange={onChange}
       />
-      <button
-        type="button"
-        onClick={handleClear}
-        // eslint-disable-next-line readable-tailwind/multiline
-        className={`
-          absolute right-2 top-2
-        `}
-      >
-        <FontAwesomeIcon className="text-theme" icon={faXmark} />
-      </button>
+      {inputRef.current?.value && (
+        <button
+          type="button"
+          onClick={handleClear}
+          // eslint-disable-next-line readable-tailwind/multiline
+          className={`
+            absolute right-2 top-2
+          `}
+        >
+          <FontAwesomeIcon className="text-theme" icon={faXmark} />
+        </button>
+      )}
     </span>
   );
 };
