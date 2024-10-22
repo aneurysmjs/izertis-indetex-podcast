@@ -1,4 +1,6 @@
-export default {
+import type { PodcastDescriptionResponse } from '@/entities';
+
+const podcastDescriptionMockData: PodcastDescriptionResponse = {
   resultCount: 21,
   results: [
     {
@@ -116,3 +118,5 @@ export default {
     },
   ],
 };
+
+export default podcastDescriptionMockData;

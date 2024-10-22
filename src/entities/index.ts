@@ -73,6 +73,7 @@ export interface PodcastEpisode {
   collectionId: number;
   collectionName: string;
   collectionViewUrl: string;
+  contentAdvisoryRating: string;
   country: string;
   description: string;
   episodeContentType: string;
@@ -93,9 +94,9 @@ export interface PodcastEpisode {
 }
 
 export interface PodcastDescription {
-  artistId: number;
+  artistId?: number;
   artistName: string;
-  artistViewUrl: string;
+  artistViewUrl?: string;
   artworkUrl100: string;
   artworkUrl30: string;
   artworkUrl60: string;
