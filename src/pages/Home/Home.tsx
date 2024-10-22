@@ -9,6 +9,7 @@ import useFilterable from '@/hooks/useFilterable';
 import useDebounce from '@/hooks/useDebounce';
 import type { Podcast } from '@/entities';
 import { getPodcast } from '@/services/podcastService';
+import HomeLayout from '@/pages/Home/layouts/HomeLayout';
 
 const searchByTitle = (item: Podcast, filterVal: string) =>
   item.title.label.toLowerCase().includes(filterVal.toLowerCase());
@@ -64,47 +65,40 @@ const Home: FC = () => {
   const shouldDisplayNoResultsText = !isLoading && search && isEmpty(filteredPodcast);
 
   return (
-    <section className="my-8 flex h-full items-start justify-center">
+    <HomeLayout>
       <div
         className={`
-          mx-auto w-full px-4
+          mb-8 flex items-center justify-center
 
-          md:w-9/12 md:px-0
+          lg:mb-4 lg:justify-end
         `}
       >
-        <div
-          className={`
-            mb-8 flex justify-center
-
-            lg:mb-4 lg:justify-end
-          `}
-        >
-          <input
-            data-testid="input-search"
-            placeholder="filter by"
-            className="input mr-0"
-            onChange={handleChange}
-          />
-        </div>
-        <div
-          className={`
-            flex flex-col flex-wrap items-center justify-between gap-6
-
-            lg:flex-row lg:flex-wrap
-          `}
-          onClick={handleClick}
-        >
-          {filteredPodcast.map((podcastItem) => (
-            <PodcastItem key={podcastItem.id.attributes['im:id']} podcast={podcastItem} />
-          ))}
-        </div>
-        {shouldDisplayNoResultsText ? (
-          <div className="mt-4 text-theme pt-5 text-center" data-testid="no-results">
-            {t('notResultsFound')} &quot;{search}&quot;
-          </div>
-        ) : null}
+        <span className="text-theme self-middle">{filteredPodcast.length}</span>
+        <input
+          data-testid="input-search"
+          placeholder="filter by"
+          className="input mr-0"
+          onChange={handleChange}
+        />
       </div>
-    </section>
+      <div
+        className={`
+          flex flex-col flex-wrap items-center justify-between gap-6
+
+          lg:flex-row lg:flex-wrap
+        `}
+        onClick={handleClick}
+      >
+        {filteredPodcast.map((podcastItem) => (
+          <PodcastItem key={podcastItem.id.attributes['im:id']} podcast={podcastItem} />
+        ))}
+      </div>
+      {shouldDisplayNoResultsText ? (
+        <div className="mt-4 text-theme pt-5 text-center" data-testid="no-results">
+          {t('notResultsFound')} &quot;{search}&quot;
+        </div>
+      ) : null}
+    </HomeLayout>
   );
 };
 

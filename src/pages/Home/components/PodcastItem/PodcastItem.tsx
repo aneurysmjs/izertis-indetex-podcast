@@ -23,7 +23,7 @@ const PodcastItem: FC<PodcastItemProps> = ({ podcast }) => {
       data-testid="podcast-item"
     >
       <img
-        className="mx-auto mb-2 rounded-full"
+        className="mx-auto mb-2 w-42.5 h-42.5 rounded-full"
         src={podcast['im:image'][2].label}
         alt={podcast.title.label}
       />
