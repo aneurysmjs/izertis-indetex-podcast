@@ -1,4 +1,4 @@
-import { type FC, useState } from 'react';
+import type { FC } from 'react';
 import { useParams } from 'react-router-dom';
 
 import ImageSkeleton from '@/components/common/ImageSkeleton';
@@ -7,17 +7,11 @@ import useGetPodcastDescription from '@/pages/PodcastDescription/hooks/useGetPod
 const PodcastSidebar: FC = () => {
   const { id } = useParams();
 
-  const [isImgLoaded, setIsImgLoaded] = useState(false);
-
   if (!id) {
     throw new Error('podcaster: id not found');
   }
 
-  const { data: podcastDescription } = useGetPodcastDescription(id);
-
-  const handleImgLoad = () => {
-    setIsImgLoaded(true);
-  };
+  const { data: podcastDescription, isLoading } = useGetPodcastDescription(id);
 
   return (
     <aside
@@ -30,18 +24,22 @@ const PodcastSidebar: FC = () => {
       `}
     >
       <figure>
-        {!isImgLoaded ? <ImageSkeleton /> : null}
-        <img
-          loading="lazy"
-          className={`
-            m-auto aspect-square rounded-sm object-contain
+        {isLoading ? (
+          <span className="h-72 w-72">
+            <ImageSkeleton />
+          </span>
+        ) : (
+          <img
+            loading="lazy"
+            className={`
+              m-auto aspect-square h-72 w-72 rounded-sm object-contain
 
-            lg:m-initial
-          `}
-          src={podcastDescription?.artworkUrl600}
-          alt={podcastDescription?.collectionName}
-          onLoad={handleImgLoad}
-        />
+              lg:m-initial
+            `}
+            src={podcastDescription?.artworkUrl600}
+            alt={podcastDescription?.collectionName}
+          />
+        )}
       </figure>
 
       <article>
