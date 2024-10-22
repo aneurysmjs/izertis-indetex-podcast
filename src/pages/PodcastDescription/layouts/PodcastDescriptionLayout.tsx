@@ -9,14 +9,14 @@ interface PodcastDescriptionLayoutProps {
 
 const PodcastDescriptionLayout: FC<PodcastDescriptionLayoutProps> = ({ content, sidebar }) => {
   return (
-    <section className="my-8">
-      <div
-        className={`
-          mx-auto flex w-full flex-col
+    <section
+      className={`
+        container mx-auto my-8 px-4
 
-          lg:w-8/12
-        `}
-      >
+        lg:px-0
+      `}
+    >
+      <div className={`mx-auto flex w-full flex-col`}>
         <div className="mb-8">
           <BackButton />
         </div>
@@ -37,7 +37,7 @@ const PodcastDescriptionLayout: FC<PodcastDescriptionLayoutProps> = ({ content, 
             {sidebar}
           </div>
 
-          <div className={`flex-auto w-200`}>{content}</div>
+          <div className={`flex-auto w-200 overflow-x-scroll`}>{content}</div>
         </div>
       </div>
     </section>

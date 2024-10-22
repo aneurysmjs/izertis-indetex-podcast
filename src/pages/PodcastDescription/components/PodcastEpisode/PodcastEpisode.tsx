@@ -9,7 +9,7 @@ const PodcastEpisode = () => {
   return (
     <article
       className={`
-        text-theme bg-white p-8 shadow-md
+        text-theme bg-white p-4 shadow-md
 
         dark:bg-gray-800 dark:shadow-none
       `}
@@ -30,7 +30,7 @@ const PodcastEpisode = () => {
                 mt-8 w-full
               `}
             >
-              <source src={episode.episodeUrl} type="audio/mpeg" />
+              <source src={episode.episodeUrl} type="audio/mp3" />
               <track kind="captions" />
             </audio>
           </footer>
