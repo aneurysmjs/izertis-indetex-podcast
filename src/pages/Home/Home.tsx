@@ -2,14 +2,14 @@ import { type FC, type ChangeEvent, type MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import isEmpty from 'ramda/src/isEmpty';
 import { useNavigate } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
 
 import PodcastItem from '@/pages/Home/components/PodcastItem';
 import useFilterable from '@/hooks/useFilterable';
 import useDebounce from '@/hooks/useDebounce';
 import type { Podcast } from '@/entities';
-import { getPodcast } from '@/services/podcastService';
+
 import HomeLayout from '@/pages/Home/layouts/HomeLayout';
+import useGetPodcast from '@/pages/Home/hooks/useGetPodcast';
 
 const searchByTitle = (item: Podcast, filterVal: string) =>
   item.title.label.toLowerCase().includes(filterVal.toLowerCase());
@@ -32,17 +32,9 @@ const Home: FC = () => {
 
   const navigate = useNavigate();
 
-  const { data: podcastResponse, isLoading } = useQuery({
-    queryFn: getPodcast,
-    queryKey: ['podcastList'],
-    staleTime: Infinity,
-  });
+  const { data: podcastList, isLoading } = useGetPodcast();
 
-  const filteredPodcast = useFilterable(
-    podcastResponse?.data.feed.entry ?? [],
-    search,
-    searchByTitle,
-  );
+  const filteredPodcast = useFilterable(podcastList ?? [], search, searchByTitle);
 
   const handleChange = useDebounce<ChangeEvent<HTMLInputElement>>((evt) => {
     if (evt) {
