@@ -4,6 +4,7 @@ import isEmpty from 'ramda/src/isEmpty';
 import { useNavigate } from 'react-router-dom';
 
 import PodcastItem from '@/pages/Home/components/PodcastItem';
+import SearchInput from '@/pages/Home/components/SearchInput';
 import useFilterable from '@/hooks/useFilterable';
 import useDebounce from '@/hooks/useDebounce';
 import type { Podcast } from '@/entities';
@@ -44,6 +45,10 @@ const Home: FC = () => {
     }
   });
 
+  const handleClear = () => {
+    setSearch('');
+  };
+
   const handleClick = (evt: MouseEvent<HTMLDivElement>) => {
     const target = evt.target as HTMLDivElement;
 
@@ -66,12 +71,7 @@ const Home: FC = () => {
         `}
       >
         <span className="text-theme self-middle">{filteredPodcast.length}</span>
-        <input
-          data-testid="input-search"
-          placeholder="filter by"
-          className="input mr-0"
-          onChange={handleChange}
-        />
+        <SearchInput onChange={handleChange} onClear={handleClear} />
       </div>
       <div
         className={`
