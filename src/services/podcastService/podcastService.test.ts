@@ -1,13 +1,14 @@
-import axios from 'axios';
 import { expect, it, vi, describe, afterEach, type Mocked } from 'vitest';
 
-import { getPodcast, getPodcastDescription } from '.';
+import api from '@/services/api';
+
 import podcastMockData from './podcastMockData';
+import { getPodcast, getPodcastDescription } from './podcastService';
 import podcastDescriptionMockData from './podcastDescriptionMockData';
 
-vi.mock('axios');
+vi.mock('@/services/api');
 
-const mockAxios = axios as Mocked<typeof axios>;
+const mockApi = api as Mocked<typeof api>;
 
 describe('podcastService', () => {
   afterEach(() => {
@@ -16,7 +17,7 @@ describe('podcastService', () => {
 
   describe('getPodcast', () => {
     it('resolves podcast data', async () => {
-      mockAxios.get.mockResolvedValue(podcastMockData);
+      mockApi.get.mockResolvedValue(podcastMockData);
       const response = await getPodcast();
 
       expect(response).toStrictEqual(podcastMockData);
@@ -24,7 +25,7 @@ describe('podcastService', () => {
 
     it('rejects due bad request', async () => {
       const networkError = new Error('Network Error');
-      mockAxios.get.mockRejectedValue(networkError);
+      mockApi.get.mockRejectedValue(networkError);
 
       await expect(getPodcast()).rejects.toStrictEqual(networkError);
     });
@@ -32,7 +33,7 @@ describe('podcastService', () => {
 
   describe('getPodcastDescription', () => {
     it('resolves podcast description data', async () => {
-      mockAxios.get.mockResolvedValue(podcastDescriptionMockData);
+      mockApi.get.mockResolvedValue(podcastDescriptionMockData);
       const response = await getPodcastDescription('123456');
 
       const [podcastDescription] = response.results;
@@ -41,7 +42,7 @@ describe('podcastService', () => {
 
     it('rejects due bad request', async () => {
       const networkError = new Error('Network Error');
-      mockAxios.get.mockRejectedValue(networkError);
+      mockApi.get.mockRejectedValue(networkError);
 
       await expect(getPodcastDescription('123456')).rejects.toStrictEqual(networkError);
     });
