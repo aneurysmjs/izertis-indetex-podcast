@@ -2,7 +2,7 @@ import { expect, it, vi, afterEach } from 'vitest';
 import { renderHook, waitFor } from '@testing-library/react';
 
 import { WithQueryWrapper } from '@/utils/testUtils/renderWithQueryClient';
-import podcastMockData from '@/services/podcastMockData';
+import podcastMockData from '@/services/podcastService/podcastMockData';
 
 import useGetPodcast from './useGetPodcast';
 

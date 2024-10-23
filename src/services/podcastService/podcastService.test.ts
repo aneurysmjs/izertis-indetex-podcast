@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { expect, it, vi, describe, afterEach, type Mocked } from 'vitest';
 
-import { getPodcast, getPodcastDescription } from './podcastService';
+import { getPodcast, getPodcastDescription } from '.';
 import podcastMockData from './podcastMockData';
 import podcastDescriptionMockData from './podcastDescriptionMockData';
 

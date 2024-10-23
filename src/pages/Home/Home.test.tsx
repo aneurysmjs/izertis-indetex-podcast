@@ -3,7 +3,7 @@ import { act } from 'react';
 import { screen, waitFor, fireEvent } from '@testing-library/react';
 
 import renderWithQueryClient from '@/utils/testUtils/renderWithQueryClient';
-import podcastMockData from '@/services/podcastMockData';
+import podcastMockData from '@/services/podcastService/podcastMockData';
 import Home from './Home';
 
 const { mockGetPodcast, mockUseNavigate } = vi.hoisted(() => ({
