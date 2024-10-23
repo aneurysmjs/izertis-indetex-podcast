@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { getPodcastDescription } from '@/services/podcastService';
+import { getPodcastDescription } from '@/pages/PodcastDescription/services/podcastDescriptionService';
 import episodeListAdapter from '@/pages/PodcastDescription/adapters/episodeListAdapter';
 
 export default function useGetEpisodeList(id: string) {

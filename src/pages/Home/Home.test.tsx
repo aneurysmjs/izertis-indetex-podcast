@@ -1,9 +1,9 @@
-import { expect, it, vi, beforeAll, afterEach, beforeEach } from 'vitest';
+import { describe, expect, it, vi, beforeAll, afterEach, beforeEach } from 'vitest';
 import { act } from 'react';
 import { screen, waitFor, fireEvent } from '@testing-library/react';
 
 import renderWithQueryClient from '@/utils/testUtils/renderWithQueryClient';
-import podcastMockData from '@/services/podcastService/podcastMockData';
+import podcastMockData from '@/pages/Home/services/podcastService/podcastMockData';
 import Home from './Home';
 
 const { mockGetPodcast, mockUseNavigate } = vi.hoisted(() => ({
@@ -15,7 +15,7 @@ vi.mock('react-router-dom', () => ({
   useNavigate: mockUseNavigate,
 }));
 
-vi.mock('@/services/podcastService', () => ({
+vi.mock('@/pages/Home/services/podcastService', () => ({
   getPodcast: mockGetPodcast,
 }));
 

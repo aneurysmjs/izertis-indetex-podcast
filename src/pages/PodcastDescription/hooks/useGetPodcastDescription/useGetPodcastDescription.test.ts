@@ -1,8 +1,8 @@
-import { expect, it, vi, afterEach } from 'vitest';
+import { describe, expect, it, vi, afterEach } from 'vitest';
 import { renderHook, waitFor } from '@testing-library/react';
 
 import { WithQueryWrapper } from '@/utils/testUtils/renderWithQueryClient';
-import podcastDescriptionMockData from '@/services/podcastService/podcastDescriptionMockData';
+import podcastDescriptionMockData from '@/pages/PodcastDescription/services/podcastDescriptionService/podcastDescriptionMockData';
 
 import useGetPodcastDescription from './useGetPodcastDescription';
 
@@ -10,7 +10,7 @@ const { mockGetPodcastDescription } = vi.hoisted(() => ({
   mockGetPodcastDescription: vi.fn(),
 }));
 
-vi.mock('@/services/podcastService', () => ({
+vi.mock('@/pages/PodcastDescription/services/podcastDescriptionService', () => ({
   getPodcastDescription: mockGetPodcastDescription,
 }));
 
